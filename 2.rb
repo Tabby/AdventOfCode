@@ -3,48 +3,48 @@
 module AOC
   class D2
     # param input [Array<String>] input array
-    def self.p1(input)
-      depth = 0
-      h_position = 0
+    def initialize(input)
+      @depth = 0
+      @h_position = 0
+      @aim = 0
+      @input = input
+    end
 
-      input.each do |movement|
+    def p1
+      @input.each do |movement|
         dir, amount = movement.split
         amount = amount.to_i
         case dir
         when 'forward'
-          h_position += amount
+          @h_position += amount
         when 'down'
-          depth += amount
+          @depth += amount
         when 'up'
-          depth -= amount
+          @depth -= amount
         else
           raise "Unknown direction (dir: #{dir}, amount: #{amount})"
         end
       end
-      h_position * depth
+      @h_position * @depth
     end
 
-    def self.p2(input)
-      depth = 0
-      h_position = 0
-      aim = 0
-
-      input.each do |movement|
+    def p2
+      @input.each do |movement|
         dir, amount = movement.split
         amount = amount.to_i
         case dir
         when 'forward'
-          h_position += amount
-          depth += amount * aim
+          @h_position += amount
+          @depth += amount * @aim
         when 'down'
-          aim += amount
+          @aim += amount
         when 'up'
-          aim -= amount
+          @aim -= amount
         else
           raise 'Unknown direction'
         end
       end
-      h_position * depth
+      @h_position * @depth
     end
   end
 end

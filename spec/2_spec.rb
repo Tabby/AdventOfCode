@@ -2,34 +2,29 @@
 
 require_relative '../2'
 
-EXAMPLE_INPUT_2 = [
-  'forward 5',
-  'down 5',
-  'forward 8',
-  'up 3',
-  'down 8',
-  'forward 2'
-].freeze
-
 describe AOC::D2 do
   describe 'Day 2' do
-    context 'Puzzle 1' do
-      it 'gives correct answer with example input' do
-        expect(AOC::D2.p1(EXAMPLE_INPUT_2)).to eq(150)
+    context 'Example input' do
+      subject { AOC::D2.new(File.readlines('spec/input/2_example.txt').map(&:strip)) }
+
+      it 'Puzzle 1 gives correct answer' do
+        expect(subject.p1).to eq(150)
       end
-      it 'gives correct answer with real input' do
-        input = File.readlines('spec/input/2.txt')
-        expect(AOC::D2.p1(input)).to eq(1_694_130)
+
+      it 'Puzzle 2 gives correct answer' do
+        expect(subject.p2).to eq(900)
       end
     end
 
-    context 'Puzzle 2' do
-      it 'gives correct answer with example input' do
-        expect(AOC::D2.p2(EXAMPLE_INPUT_2)).to eq(900)
+    context 'Real input' do
+      subject { AOC::D2.new(File.readlines('spec/input/2.txt').map(&:strip)) }
+
+      it 'Puzzle 1 gives correct answer' do
+        expect(subject.p1).to eq(1_694_130)
       end
-      it 'gives correct answer with real input' do
-        input = File.readlines('spec/input/2.txt')
-        expect(AOC::D2.p2(input)).to eq(1_698_850_445)
+
+      it 'Puzzle 2 gives correct answer' do
+        expect(subject.p2).to eq(1_698_850_445)
       end
     end
   end
