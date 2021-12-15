@@ -39,7 +39,7 @@ module AOC
     # @example A line going from 1,1 -> 1,3
     #   get_points_from_line({start: {x: 1, y: 1}, finish: {x:1, y:3}}) #=> [{x: 1, y: 1}, {x: 1, y: 2}, {x: 1, y: 3}]
     def get_points_from_line(line)
-      enumerables_for_line(line) => { x_enumerable:, y_enumerable: }
+      enumerables_for_line(line) => { x_enumerator:, y_enumerator: }
       if horizontal_or_vertical?(line)
         x_enumerator.each_with_object([]) do |x, points|
           y_enumerator.each do |y|
@@ -104,7 +104,7 @@ module AOC
       end
     end
 
-    # Pretty pictures ^_^
+    # Pretty pictures
     def to_s
       str = String.new(" 0123456789\n")
       (0..@height).each do |y|
