@@ -8,12 +8,15 @@ describe AOC::D6 do
       subject { AOC::D6.new(File.readlines('spec/input/6_example.txt').map(&:strip)) }
 
       it 'parses the input correctly' do
-        expect(subject.fish.length).to be 5
-        expect(subject.fish[0].timer).to be 3
-        expect(subject.fish[1].timer).to be 4
-        expect(subject.fish[2].timer).to be 3
-        expect(subject.fish[3].timer).to be 1
-        expect(subject.fish[4].timer).to be 2
+        expect(subject.fish[0]).to be 0
+        expect(subject.fish[1]).to be 1
+        expect(subject.fish[2]).to be 1
+        expect(subject.fish[3]).to be 2
+        expect(subject.fish[4]).to be 1
+        expect(subject.fish[5]).to be 0
+        expect(subject.fish[6]).to be 0
+        expect(subject.fish[7]).to be 0
+        expect(subject.fish[8]).to be 0
       end
 
       it 'Puzzle 1 gives correct answer' do
@@ -32,9 +35,9 @@ describe AOC::D6 do
         expect(subject.p1).to eq(352_195)
       end
 
-      # it 'Puzzle 2 gives correct answer' do
-      #   expect(subject.p2).to eq(17_741)
-      # end
+      it 'Puzzle 2 gives correct answer' do
+        expect(subject.p2).to eq(1_600_306_001_288)
+      end
     end
   end
 end

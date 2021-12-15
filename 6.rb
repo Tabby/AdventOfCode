@@ -9,48 +9,34 @@ module AOC
     end
 
     def p1
-      80.times { tick }
-      @fish.length
+      run_simulation(80)
     end
 
     def p2
       # TODO: this causes my chromebook to lock up and reboot after an hour and a bit, lol XD
-      256.times { tick }
-      @fish.length
+      run_simulation(256)
     end
 
-    def parse_input(input)
-      input[0].split(',').each_with_object([]) do |timer, fish|
-        fish << Fish.new(timer.to_i)
+    def run_simulation(ticks)
+      ticks.times { tick }
+      (0..8).reduce(0) do |agg, i|
+        agg + @fish[i]
       end
     end
 
-    def spawn_fish
-      @fish_to_add << Fish.new(8)
+    def parse_input(input)
+      input[0].split(',').map(&:to_i).each_with_object(Hash.new(0)) do |timer, fish|
+        fish[timer] = fish[timer] + 1
+      end
     end
 
     def tick
-      @fish.concat(@fish.each_with_object([]) do |fish, fish_to_add|
-        new_fish = fish.tick
-        fish_to_add << new_fish unless new_fish.nil?
-      end)
-    end
-  end
-
-  class Fish
-    attr_reader :timer
-
-    def initialize(timer, &block)
-      @timer = timer
-      @spawn_fish = block
-    end
-
-    def tick
-      @timer -= 1
-      return nil unless @timer.negative?
-
-      @timer = 6
-      Fish.new(8)
+      new_fish = @fish[0]
+      (0..7).each do |i|
+        fish[i] = fish[i + 1]
+      end
+      fish[6] += new_fish # Fish whose timers were 0 at the start of this tick
+      fish[8] = new_fish # Newly spawned fish from those whose timers were 0 at the start of this tick
     end
   end
 end
