@@ -14,6 +14,8 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     parallel (1.21.0)
+    parallel_tests (3.7.3)
+      parallel
     parser (3.0.3.2)
       ast (~> 2.4.1)
     racc (1.6.0)
@@ -64,6 +66,10 @@ GEM
       yard (~> 0.9, >= 0.9.24)
     thor (1.1.0)
     tilt (2.0.10)
+    turbo_tests (1.3.0)
+      bundler
+      parallel_tests (~> 3.3)
+      rspec (~> 3.10)
     unicode-display_width (2.1.0)
     webrick (1.7.0)
     yard (0.9.27)
@@ -75,6 +81,7 @@ PLATFORMS
 DEPENDENCIES
   rspec
   solargraph
+  turbo_tests
 
 BUNDLED WITH
    2.2.33
