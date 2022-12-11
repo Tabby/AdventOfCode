@@ -4,7 +4,7 @@ module AOC
   class D1
     attr_accessor :elves
 
-    # param input [Array<integer?>] input array
+    # param input [Array<string>] input array
     def initialize(input)
       @input = input
       @elves = [0]
